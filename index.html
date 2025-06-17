@@ -4,6 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Akash Basnet - Cybersecurity Professional</title>
+    <!-- Preconnect to Google Fonts for faster loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
     <!-- Google Fonts - Inter -->
@@ -98,7 +101,7 @@
             width: 0.6em; /* Cursor width */
             height: 1em; /* Cursor height, adjusts with font size */
             display: inline-block;
-            vertical-align: middle;
+            vertical-align: text-bottom; /* Adjusted vertical-align for better alignment */
             animation: blink 1s step-end infinite;
         }
 
@@ -134,29 +137,30 @@
             <div class="terminal-header-button red"></div>
             <div class="terminal-header-button yellow"></div>
             <div class="terminal-header-button green"></div>
-            <div class="flex-grow text-center text-sm text-gray-400">akash@portfolio: ~</div>
+            <!-- Updated terminal header prompt -->
+            <div class="flex-grow text-center text-sm text-gray-400">root@akash: ~</div>
         </div>
         <div id="terminal-output" class="terminal-content">
-            <!-- Terminal output will be typed here by JavaScript -->
+            <!-- Pre-rendered first command and output for faster initial load perception -->
+            <div class="command-prompt">root@akash:~$whoami<span class="cursor"></span></div>
+            <div class="output">Akash Basnet - <span class="cyan-text">Cybersecurity Professional</span></div>
         </div>
         <div class="footer">
-            © Akash Basnet 2025 | Crafted with Code & Creativity
+            <!-- Simplified footer text -->
+            © Akash Basnet 2025
         </div>
     </div>
 
     <script>
         const terminalOutput = document.getElementById('terminal-output');
         const commands = [
+            // Removed the first command as it's now pre-rendered in HTML
             {
-                command: 'akash@portfolio:~$ whoami',
-                output: 'Akash Basnet - <span class="cyan-text">Cybersecurity Professional</span>'
-            },
-            {
-                command: 'akash@portfolio:~$ cat summary.txt',
+                command: 'root@akash:~$cat summary.txt', // Updated prompt and no space
                 output: 'Leveraging more than a decade of experience in Information Technology, including over 3 years specializing in Cybersecurity, my expertise is primarily focused on<span class="green-text">Red Teaming operations</span>, in-depth <span class="green-text">Threat Research</span>, and comprehensive <span class="green-text">Penetration Testing engagements</span>.'
             },
             {
-                command: 'akash@portfolio:~$ ls skills/',
+                command: 'root@akash:~$lsskills/', // Updated prompt and no space
                 output: `Systems: <span class="yellow-text">Proficient in Windows, Linux, macOS environments, Active Directory administration, and VMware virtualization platforms.</span>
 Networking: <span class="yellow-text">Strong understanding of LAN/WAN architectures, VPN configurations, RDP, and SSH protocols.</span>
 Security: <span class="yellow-text">Expertise in identifying and mitigating OWASP Top 10 vulnerabilities, performing CVE analysis, and conducting thorough Web, Mobile, and API Penetration Testing.</span>
@@ -165,12 +169,12 @@ Cloud: <span class="yellow-text">Experience with Google Cloud Platform (GCP), AW
 Scripts: <span class="yellow-text">Competent in Shell scripting and foundational Python for automation and security tasks.</span>`
             },
             {
-                command: 'akash@portfolio:~$ cat certs.txt',
-                output: `CEH (2019), Fortinet NSE 2 (2019), <span class="green-text">Google Cloud Cybersecurity Certificate </span>
+                command: 'root@akash:~$catcerts.txt', // Updated prompt and no space, removed (2019)
+                output: `CEH, Fortinet NSE 2, <span class="green-text">Google Cloud Cybersecurity Certificate </span>
 <span class="green-text">Google IT Support Professional Certificate </span>, <span class="green-text">Microsoft IT Support Certificate </span>, PJPT - (In Progress)`
             },
             {
-                command: 'akash@portfolio:~$ cat experience.txt',
+                command: 'root@akash:~$catexperience.txt', // Updated prompt and no space
                 output: `IT Systems Administrator - <span class="green-text">Dept. of Law & Justice (2021–2022)</span>: Managed critical IT infrastructure, ensuring system integrity and operational efficiency.
 Penetration Tester - <span class="green-text">One Cover Pvt. Ltd (2019–2020)</span>: Executed penetration tests on web and mobile applications, identifying and reporting critical security flaws.
 IT Manager - <span class="green-text">GlobalLink Technology (2016–2021)</span>: Oversaw IT operations, implemented security protocols, and managed network infrastructure.
@@ -178,19 +182,19 @@ Desktop Support - <span class="green-text">Online Computer (2014–2015)</span>:
 Sales/Storekeeper - <span class="green-text">Online Computer (2012–2013)</span>: Gained foundational experience in technology sales and inventory management.`
             },
             {
-                command: 'akash@portfolio:~$ cat education.txt',
+                command: 'root@akash:~$cateducation.txt', // Updated prompt and no space
                 output: `Bachelor in Business Studies – <span class="green-text">Times Int’l College</span>
 Bachelor in Computer Application (Dropout) – <span class="green-text">Nepal Mega College</span>`
             },
             {
-                command: 'akash@portfolio:~$ cat achievements.txt',
+                command: 'root@akash:~$catachievements.txt', // Updated prompt and no space
                 output: `🏆 Winner – <span class="cyan-text">Pre-DEFCON CTF</span>: Secured first place in a highly competitive Capture The Flag event, demonstrating advanced defensive and offensive cybersecurity skills.
 🏅 Top 50 – <span class="cyan-text">WIZ Cloud IR Challenge</span>: Ranked within the top 50 participants, showcasing strong capabilities in cloud incident response.
 🎯 Top 500 – <span class="cyan-text">DoD Cyber Sentinel CTF</span>: Achieved a top 500 ranking in a challenging Department of Defense cybersecurity competition.
 ✅ Recognized by: <span class="green-text">Google, Microsoft, Meta, Apple, Harvard, Cambridge, BBC, etc.</span>: Received formal recognition from leading global organizations for identified security vulnerabilities and contributions.`
             },
             {
-                command: 'akash@portfolio:~$ cat contact.txt',
+                command: 'root@akash:~$catcontact.txt', // Updated prompt and no space
                 output: `Email: <span class="green-text">basnetakash46@gmail.com</span>
 LinkedIn: <span class="green-text"><a href="https://linkedin.com/in/akashbasnet" target="_blank" class="hover:underline">linkedin.com/in/akashbasnet</a></span>`
             }
@@ -202,6 +206,12 @@ LinkedIn: <span class="green-text"><a href="https://linkedin.com/in/akashbasnet"
         let currentElement = null;
 
         function typeWriter() {
+            // If the pre-rendered content is still showing a cursor, remove it before starting the next typing
+            const preRenderedCursor = terminalOutput.querySelector('.command-prompt .cursor');
+            if (preRenderedCursor) {
+                preRenderedCursor.remove();
+            }
+
             if (commandIndex < commands.length) {
                 const currentCommandData = commands[commandIndex];
                 let textToType = '';
@@ -224,7 +234,8 @@ LinkedIn: <span class="green-text"><a href="https://linkedin.com/in/akashbasnet"
                     currentElement.innerHTML = textToType.substring(0, charIndex + 1) + '<span class="cursor"></span>';
                     terminalOutput.scrollTop = terminalOutput.scrollHeight; // Scroll to bottom
                     charIndex++;
-                    setTimeout(typeWriter, isTypingCommand ? 50 : 25); // Faster for command, slower for output
+                    // Even faster typing for commands, very fast for output
+                    setTimeout(typeWriter, isTypingCommand ? 20 : 10); /* Reduced typing speed */
                 } else {
                     // Remove cursor after typing is complete for the current line
                     currentElement.innerHTML = textToType;
@@ -234,21 +245,21 @@ LinkedIn: <span class="green-text"><a href="https://linkedin.com/in/akashbasnet"
                         isTypingCommand = false;
                         charIndex = 0;
                         currentElement = null; // Reset currentElement for the next output line
-                        setTimeout(typeWriter, 500); // Pause before typing output
+                        setTimeout(typeWriter, 150); /* Reduced pause */
                     } else {
                         currentElement.classList.add(targetClass);
                         isTypingCommand = true;
                         charIndex = 0;
                         commandIndex++;
                         currentElement = null; // Reset currentElement for the next command line
-                        setTimeout(typeWriter, 1000); // Pause before next command
+                        setTimeout(typeWriter, 400); /* Reduced pause */
                     }
                 }
             } else {
-                // All commands typed, add final prompt and fade-in terminal container
+                // All commands typed, add final prompt
                 const finalPrompt = document.createElement('div');
                 finalPrompt.className = 'command-prompt';
-                finalPrompt.innerHTML = 'akash@portfolio:~$ <span class="cursor"></span>';
+                finalPrompt.innerHTML = 'root@akash:~$ <span class="cursor"></span>'; // Updated final prompt
                 terminalOutput.appendChild(finalPrompt);
                 terminalOutput.scrollTop = terminalOutput.scrollHeight;
 
@@ -260,9 +271,10 @@ LinkedIn: <span class="green-text"><a href="https://linkedin.com/in/akashbasnet"
             }
         }
 
-        // Start typing after a short delay
+        // Start typing immediately after the window loads
         window.onload = () => {
-            setTimeout(typeWriter, 1000);
+            // Initial call to remove the pre-rendered cursor and start typing the *next* command
+            typeWriter();
         };
     </script>
 </body>
