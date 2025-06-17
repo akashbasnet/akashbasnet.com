@@ -1,108 +1,269 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Akash Basnet | Hacker Portfolio</title>
-  <link href="https://fonts.googleapis.com/css2?family=Fira+Code&display=swap" rel="stylesheet">
-  <style>
-    * {
-      box-sizing: border-box;
-      font-family: 'Fira Code', monospace;
-    }
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Akash Basnet - Cybersecurity Professional</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Google Fonts - Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', monospace; /* Use Inter with monospace fallback */
+            background-color: #0d1117; /* Dark background inspired by GitHub dark theme */
+            color: #c9d1d9; /* Light grey text */
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            overflow: hidden; /* Hide scrollbar during animation */
+        }
+        .terminal-container {
+            background-color: #161b22; /* Slightly lighter dark for terminal background */
+            border: 1px solid #30363d;
+            border-radius: 0.75rem; /* Rounded corners */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+            max-width: 90vw; /* Responsive width */
+            width: 800px; /* Max width */
+            height: 80vh; /* Responsive height */
+            max-height: 600px; /* Max height */
+            display: flex;
+            flex-direction: column;
+            overflow: hidden;
+            position: relative;
+        }
+        .terminal-header {
+            background-color: #21262d;
+            border-bottom: 1px solid #30363d;
+            padding: 0.5rem 1rem;
+            display: flex;
+            align-items: center;
+            border-top-left-radius: 0.75rem;
+            border-top-right-radius: 0.75rem;
+        }
+        .terminal-header-button {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            margin-right: 6px;
+        }
+        .red { background-color: #ff5f56; }
+        .yellow { background-color: #ffbd2e; }
+        .green { background-color: #27c93f; }
 
-    body {
-      background-color: #0a0a0a;
-      color: #00ff00;
-      padding: 1rem 2rem;
-      min-height: 100vh;
-      overflow-x: hidden;
-    }
+        .terminal-content {
+            flex-grow: 1;
+            padding: 1.5rem;
+            overflow-y: auto;
+            white-space: pre-wrap; /* Preserve whitespace and wrap text */
+            font-size: 0.95rem; /* Slightly smaller font for terminal */
+            line-height: 1.5;
+            color: #58a6ff; /* Default command color (blueish) */
+            scrollbar-width: thin; /* Firefox */
+            scrollbar-color: #30363d #161b22; /* Firefox */
+        }
+        .terminal-content::-webkit-scrollbar {
+            width: 8px;
+        }
+        .terminal-content::-webkit-scrollbar-track {
+            background: #161b22;
+        }
+        .terminal-content::-webkit-scrollbar-thumb {
+            background-color: #30363d;
+            border-radius: 10px;
+            border: 2px solid #161b22;
+        }
 
-    .terminal-line {
-      display: block;
-      margin: 0.5rem 0;
-    }
+        .output {
+            color: #c9d1d9; /* Output text color */
+        }
+        .command-prompt {
+            color: #8b949e; /* Prompt text color */
+        }
+        .green-text {
+            color: #56d364; /* Green for info text (like skills, certs) */
+        }
+        .yellow-text {
+            color: #e3b341; /* Yellow for specific labels (e.g., Tools:, Cloud:) */
+        }
+        .cyan-text {
+            color: #79c0ff; /* Cyan for achievements/titles */
+        }
 
-    .prompt {
-      color: #39ff14;
-    }
+        .cursor {
+            background-color: #c9d1d9; /* Cursor color */
+            width: 0.6em; /* Cursor width */
+            height: 1em; /* Cursor height, adjusts with font size */
+            display: inline-block;
+            vertical-align: middle;
+            animation: blink 1s step-end infinite;
+        }
 
-    .command {
-      color: #00ffff;
-    }
+        @keyframes blink {
+            from, to { opacity: 0; }
+            50% { opacity: 1; }
+        }
 
-    a {
-      color: #00ffff;
-      text-decoration: none;
-    }
+        .fade-in {
+            opacity: 0;
+            animation: fadeIn 1s forwards;
+        }
 
-    a:hover {
-      text-decoration: underline;
-    }
+        @keyframes fadeIn {
+            to { opacity: 1; }
+        }
 
-    .highlight {
-      color: #ff0055;
-    }
-
-    footer {
-      margin-top: 4rem;
-      font-size: 0.85rem;
-      color: #777;
-      text-align: center;
-    }
-
-    @media screen and (max-width: 600px) {
-      body {
-        font-size: 0.9rem;
-        padding: 1rem;
-      }
-    }
-  </style>
+        .footer {
+            text-align: center;
+            font-size: 0.8rem;
+            color: #8b949e;
+            padding: 1rem;
+            position: absolute;
+            bottom: 0;
+            width: 100%;
+            box-sizing: border-box;
+        }
+    </style>
 </head>
-<body>
+<body class="bg-black text-gray-200 flex items-center justify-center p-4">
+    <div class="terminal-container">
+        <div class="terminal-header">
+            <div class="terminal-header-button red"></div>
+            <div class="terminal-header-button yellow"></div>
+            <div class="terminal-header-button green"></div>
+            <div class="flex-grow text-center text-sm text-gray-400">akash@portfolio: ~</div>
+        </div>
+        <div id="terminal-output" class="terminal-content">
+            <!-- Terminal output will be typed here by JavaScript -->
+        </div>
+        <div class="footer">
+            © 2025 Akash Basnet | Built with code & ☕
+        </div>
+    </div>
 
-  <div class="terminal-line"><span class="prompt">akash@portfolio:~$</span> <span class="command">whoami</span></div>
-  <div class="terminal-line">Akash Basnet - Cybersecurity Professional</div>
+    <script>
+        const terminalOutput = document.getElementById('terminal-output');
+        const commands = [
+            {
+                command: 'akash@portfolio:~$ whoami',
+                output: 'Akash Basnet - <span class="cyan-text">Seasoned Cybersecurity Professional</span>'
+            },
+            {
+                command: 'akash@portfolio:~$ cat summary.txt',
+                output: 'Leveraging over 10 years of experience in IT, with 3+ dedicated years in Cybersecurity. My expertise is primarily focused on advanced <span class="green-text">Red Teaming operations</span>, in-depth <span class="green-text">Threat Research</span>, and comprehensive <span class="green-text">Penetration Testing engagements</span>.'
+            },
+            {
+                command: 'akash@portfolio:~$ ls skills/',
+                output: `Systems: <span class="yellow-text">Proficient in Windows, Linux, macOS environments, Active Directory administration, and VMware virtualization platforms.</span>
+Networking: <span class="yellow-text">Strong understanding of LAN/WAN architectures, VPN configurations, RDP, and SSH protocols.</span>
+Security: <span class="yellow-text">Expertise in identifying and mitigating OWASP Top 10 vulnerabilities, performing CVE analysis, and conducting thorough Web, Mobile, and API Penetration Testing.</span>
+Tools: <span class="yellow-text">Adept with industry-standard tools including Burp Suite, Metasploit, MobSF, Frida, and Nmap for vulnerability assessment and exploitation.</span>
+Cloud: <span class="yellow-text">Experience with Google Cloud Platform (GCP), AWS EC2/S3 services, IAM role management, and proactive cloud misconfiguration detection.</span>
+Scripts: <span class="yellow-text">Competent in Shell scripting and foundational Python for automation and security tasks.</span>`
+            },
+            {
+                command: 'akash@portfolio:~$ cat certs.txt',
+                output: `CEH (2019), Fortinet NSE 2 (2019), <span class="green-text">Google Cloud Cybersecurity Certificate (2025)</span>
+<span class="green-text">Google IT Support Professional Certificate (2025)</span>, <span class="green-text">Microsoft IT Support Certificate (2025)</span>, PJPT - In Progress`
+            },
+            {
+                command: 'akash@portfolio:~$ cat experience.txt',
+                output: `IT Systems Administrator - <span class="green-text">Dept. of Law & Justice (2021–2022)</span>: Managed critical IT infrastructure, ensuring system integrity and operational efficiency.
+Penetration Tester - <span class="green-text">One Cover Pvt. Ltd (2019–2020)</span>: Executed penetration tests on web and mobile applications, identifying and reporting critical security flaws.
+IT Manager - <span class="green-text">GlobalLink Technology (2016–2021)</span>: Oversaw IT operations, implemented security protocols, and managed network infrastructure.
+Desktop Support - <span class="green-text">Online Computer (2014–2015)</span>: Provided technical support and resolved system-level issues for end-users.
+Sales/Storekeeper - <span class="green-text">Online Computer (2012–2013)</span>: Gained foundational experience in technology sales and inventory management.`
+            },
+            {
+                command: 'akash@portfolio:~$ cat education.txt',
+                output: `Bachelor in Business Studies – <span class="green-text">Times Int’l College</span>
+Bachelor in Computer Application (Dropout) – <span class="green-text">Nepal Mega College</span>`
+            },
+            {
+                command: 'akash@portfolio:~$ cat achievements.txt',
+                output: `🏆 Winner – <span class="cyan-text">Pre-DEFCON CTF</span>: Secured first place in a highly competitive Capture The Flag event, demonstrating advanced defensive and offensive cybersecurity skills.
+🏅 Top 50 – <span class="cyan-text">WIZ Cloud IR Challenge</span>: Ranked within the top 50 participants, showcasing strong capabilities in cloud incident response.
+🎯 Top 500 – <span class="cyan-text">DoD Cyber Sentinel CTF</span>: Achieved a top 500 ranking in a challenging Department of Defense cybersecurity competition.
+✅ Recognized by: <span class="green-text">Google, Microsoft, Meta, Apple, Harvard, Cambridge, BBC, etc.</span>: Received formal recognition from leading global organizations for identified security vulnerabilities and contributions.`
+            },
+            {
+                command: 'akash@portfolio:~$ cat contact.txt',
+                output: `Email: <span class="green-text">basnetakash46@gmail.com</span>
+LinkedIn: <span class="green-text"><a href="https://linkedin.com/in/akashbasnet" target="_blank" class="hover:underline">linkedin.com/in/akashbasnet</a></span>`
+            }
+        ];
 
-  <div class="terminal-line"><span class="prompt">akash@portfolio:~$</span> <span class="command">cat summary.txt</span></div>
-  <div class="terminal-line">10+ years in IT, 3+ years in Cybersecurity. Focused on Red Teaming, Threat Research, and Pentesting.</div>
+        let commandIndex = 0;
+        let charIndex = 0;
+        let isTypingCommand = true;
+        let currentElement = null;
 
-  <div class="terminal-line"><span class="prompt">akash@portfolio:~$</span> <span class="command">ls skills/</span></div>
-  <div class="terminal-line">Systems: Windows, Linux, macOS, Active Directory, VMware</div>
-  <div class="terminal-line">Networking: LAN/WAN, VPN, RDP, SSH</div>
-  <div class="terminal-line">Security: OWASP Top 10, CVE Analysis, Web/Mobile/API Pentesting</div>
-  <div class="terminal-line">Tools: Burp Suite, Metasploit, MobSF, Frida, Nmap</div>
-  <div class="terminal-line">Cloud: GCP, AWS EC2/S3, IAM, Misconfig Detection</div>
-  <div class="terminal-line">Scripts: Shell, Python (basic)</div>
+        function typeWriter() {
+            if (commandIndex < commands.length) {
+                const currentCommandData = commands[commandIndex];
+                let textToType = '';
+                let targetClass = '';
 
-  <div class="terminal-line"><span class="prompt">akash@portfolio:~$</span> <span class="command">cat certs.txt</span></div>
-  <div class="terminal-line">CEH (2019), Fortinet NSE 2 (2019), Google Cloud Cybersecurity (2025)</div>
-  <div class="terminal-line">Google IT Support (2025), Microsoft IT Support (2025), PJPT - In Progress</div>
+                if (isTypingCommand) {
+                    textToType = currentCommandData.command;
+                    targetClass = 'command-prompt';
+                } else {
+                    textToType = currentCommandData.output;
+                    targetClass = 'output';
+                }
 
-  <div class="terminal-line"><span class="prompt">akash@portfolio:~$</span> <span class="command">cat experience.txt</span></div>
-  <div class="terminal-line">IT Systems Administrator - Dept. of Law & Justice (2021–2022)</div>
-  <div class="terminal-line">Penetration Tester - One Cover Pvt. Ltd (2019–2020)</div>
-  <div class="terminal-line">IT Manager - GlobalLink Technology (2016–2021)</div>
-  <div class="terminal-line">Desktop Support - Online Computer (2014–2015)</div>
-  <div class="terminal-line">Sales/Storekeeper - Online Computer (2012–2013)</div>
+                if (!currentElement) {
+                    currentElement = document.createElement('div');
+                    terminalOutput.appendChild(currentElement);
+                }
 
-  <div class="terminal-line"><span class="prompt">akash@portfolio:~$</span> <span class="command">cat education.txt</span></div>
-  <div class="terminal-line">Bachelor in Business Studies – Times Int’l College</div>
-  <div class="terminal-line">Bachelor in Computer Application (Dropout) – Nepal Mega College</div>
+                if (charIndex < textToType.length) {
+                    currentElement.innerHTML = textToType.substring(0, charIndex + 1) + '<span class="cursor"></span>';
+                    terminalOutput.scrollTop = terminalOutput.scrollHeight; // Scroll to bottom
+                    charIndex++;
+                    setTimeout(typeWriter, isTypingCommand ? 50 : 25); // Faster for command, slower for output
+                } else {
+                    // Remove cursor after typing is complete for the current line
+                    currentElement.innerHTML = textToType;
 
-  <div class="terminal-line"><span class="prompt">akash@portfolio:~$</span> <span class="command">cat achievements.txt</span></div>
-  <div class="terminal-line">🏆 Winner – Pre-DEFCON CTF</div>
-  <div class="terminal-line">🏅 Top 50 – WIZ Cloud IR Challenge</div>
-  <div class="terminal-line">🎯 Top 500 – DoD Cyber Sentinel CTF</div>
-  <div class="terminal-line">✅ Recognized by: Google, Microsoft, Meta, Apple, Harvard, Cambridge, BBC, etc.</div>
+                    if (isTypingCommand) {
+                        currentElement.classList.add(targetClass);
+                        isTypingCommand = false;
+                        charIndex = 0;
+                        currentElement = null; // Reset currentElement for the next output line
+                        setTimeout(typeWriter, 500); // Pause before typing output
+                    } else {
+                        currentElement.classList.add(targetClass);
+                        isTypingCommand = true;
+                        charIndex = 0;
+                        commandIndex++;
+                        currentElement = null; // Reset currentElement for the next command line
+                        setTimeout(typeWriter, 1000); // Pause before next command
+                    }
+                }
+            } else {
+                // All commands typed, add final prompt and fade-in terminal container
+                const finalPrompt = document.createElement('div');
+                finalPrompt.className = 'command-prompt';
+                finalPrompt.innerHTML = 'akash@portfolio:~$ <span class="cursor"></span>';
+                terminalOutput.appendChild(finalPrompt);
+                terminalOutput.scrollTop = terminalOutput.scrollHeight;
 
-  <div class="terminal-line"><span class="prompt">akash@portfolio:~$</span> <span class="command">cat contact.txt</span></div>
-  <div class="terminal-line">Email: <a href="mailto:basnetakash46@gmail.com">basnetakash46@gmail.com</a></div>
-  <div class="terminal-line">LinkedIn: <a href="https://www.linkedin.com/in/akashbasnet" target="_blank">linkedin.com/in/akashbasnet</a></div>
+                // Add fade-in animation to the terminal container
+                document.querySelector('.terminal-container').classList.add('fade-in');
 
-  <footer>
-    &copy; 2025 Akash Basnet | Built with <span class="highlight">code</span> & ☕
-  </footer>
+                // Make the body overflow visible after animation
+                document.body.style.overflow = 'auto';
+            }
+        }
+
+        // Start typing after a short delay
+        window.onload = () => {
+            setTimeout(typeWriter, 1000);
+        };
+    </script>
 </body>
 </html>
